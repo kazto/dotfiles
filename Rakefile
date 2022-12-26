@@ -18,8 +18,16 @@ def cur_path(f)
   "#{cur_dir}/#{f}"
 end
 
+def mkdir_if_not_exist(f)
+  dir = File.dirname(f)
+  unless File.directory?(dir)
+    mkdir_p dir, verbose: true
+  end
+end
+
 task :install do
   files.each do |src, dst|
+    mkdir_if_not_exist(dst)
     ln_s cur_path(src), dest_path(dst), verbose: true
   end
 end

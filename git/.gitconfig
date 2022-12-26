@@ -1,0 +1,7 @@
+[user]
+	email = kazuto.takahashi@thinkings.co.jp
+	name = TAKAHASHI Kazto
+[alias]
+	st = status
+[init]
+	defaultBranch = main

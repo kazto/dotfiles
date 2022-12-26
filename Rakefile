@@ -27,8 +27,9 @@ end
 
 task :install do
   files.each do |src, dst|
-    mkdir_if_not_exist(dst)
-    ln_s cur_path(src), dest_path(dst), verbose: true
+    d = dest_path(dst)
+    mkdir_if_not_exist(d)
+    ln_s cur_path(src), d, verbose: true
   end
 end
 

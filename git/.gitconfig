@@ -3,5 +3,13 @@
 	name = TAKAHASHI Kazto
 [alias]
 	st = status
+	br = branch
+	sw = switch
+	log1 = log -1
+	lone = log --oneline
+	brmv = branch -m
+	brrm = branch -d
+	brrmf = branch -D
+	logg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [init]
 	defaultBranch = main

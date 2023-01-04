@@ -6,6 +6,7 @@ files = {
   "git/.gitconfig" => ".gitconfig",
   "tmux/.tmux.conf" => ".tmux.conf",
   "vim/.vimrc" => ".vimrc",
+  "bash/.bash_aliases" => ".bash_aliases",
 }
 
 def dest_path(f)

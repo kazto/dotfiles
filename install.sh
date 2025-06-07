@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ./util.sh
+. $(cd $(dirname $0); pwd)/util.sh
 
 git_clone
 

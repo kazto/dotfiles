@@ -1,8 +1,7 @@
 #!/bin/sh
 
-. $(cd $(dirname $0); pwd)/util.sh
-
-git_clone
+rm -rf $HOME/.dotfiles
+git clone https://github.com/kazto/dotfiles.git $HOME/.dotfiles
 
 for v in */install.sh
 do

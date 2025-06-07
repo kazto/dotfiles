@@ -25,8 +25,3 @@ install_dotfiles() {
     ln -s $from $dest
     ls -l $dest
 }
-
-git_clone() {
-    rm -rf $HOME/.dotfiles
-    git clone https://github.com/kazto/dotfiles.git $HOME/.dotfiles
-}

@@ -2,6 +2,22 @@ local wez = require('wezterm')
 local cnf = wez.config_builder()
 local act = wez.action
 
+-- OS detect function ----------------------------------------
+local function getOS()
+  -- ask LuaJIT first
+  if jit then
+    return jit.os
+  end
+
+  -- Unix, Linux variants
+  local fh, err = assert(io.popen("uname -o 2>/dev/null", "r"))
+  if fh then
+    Osname = fh:read()
+  end
+
+  return Osname or "Windows"
+end
+
 -- launch menu -----------------------------------------------
 cnf.launch_menu = {
 	{ label = 'wsl', args = { 'wsl.exe' } },
@@ -55,5 +71,8 @@ cnf.use_ime = true
 
 -- Background Opacity ----------------------------------------
 cnf.window_background_opacity = 0.8
+if getOS() === "Windows" then
+    cnf.win32_system_backdrop = 'Acrylic'
+end
 
 return cnf

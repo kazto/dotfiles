@@ -1,0 +1,8 @@
+model = "gpt-5.1-codex"
+trust_level = "trusted"
+sandbox_mode = "workspace-write"
+network_access = true
+ask_for_approval = "on-request"
+
+[notice]
+hide_gpt5_1_migration_prompt = true

@@ -2,7 +2,7 @@
 	email = kazto@kazto.dev
 	name = TAKAHASHI Kazto
 [alias]
-	st = status
+	st = status -sb
 	br = branch
 	sw = switch
 	log1 = log -1

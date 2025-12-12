@@ -18,8 +18,8 @@ setopt histignorealldups sharehistory
 bindkey -e
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
@@ -83,9 +83,7 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-[[ -f ~/.local/bin/mise ]] && eval "$(~/.local/bin/mise activate zsh)"
-
-alias ls=eza
-
-eval "$(zoxide init zsh --cmd x)"
+which mise > /dev/null 2>&1   && eval "$(mise activate zsh)"
+which eza > /dev/null 2>&1    && alias ls=eza
+which zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh --cmd x)"
 

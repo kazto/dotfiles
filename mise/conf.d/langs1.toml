@@ -1,0 +1,8 @@
+[tools]
+aws-cli = "latest"
+github-cli = "latest"
+go = "1.24.5"
+node = "latest"
+ruby = "latest"
+rust = "latest"
+uv = "latest"

@@ -1,0 +1,6 @@
+[tools]
+mold = "latest"
+python = "latest"
+wasmer = "latest"
+wasmtime = "latest"
+zig = "latest"

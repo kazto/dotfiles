@@ -83,7 +83,9 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
+
 which mise > /dev/null 2>&1   && eval "$(mise activate zsh)"
 which eza > /dev/null 2>&1    && alias ls=eza
 which zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh --cmd x)"
-
+which bun > /dev/null 2>&1    && export PATH=${HOME}/.bun/bin:$PATH

@@ -89,19 +89,20 @@ which mise   > /dev/null 2>&1 && eval "$(mise activate zsh)"
 which eza    > /dev/null 2>&1 && alias ls=eza
 which zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh --cmd x)"
 which bun    > /dev/null 2>&1 && export PATH=${HOME}/.bun/bin:$PATH
-if which s   > /dev/null 2>&1 
-then
-  alias s="s -b ~/.local/bin/edge"
-  ss() {
-    provider=$(s -l | fzf)
-    s -b ~/.local/bin/edge -p $provider $*
-  }
-fi
-
-
-
 # bun completions
 [ -s "/home/kazto/.bun/_bun" ] && source "/home/kazto/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
+
+# s
+if which s   > /dev/null 2>&1 
+then
+  alias s="s -b ~/.local/bin/edge"
+  ss() {
+    local provider=$(s -l | fzf)
+    s -b ~/.local/bin/edge -p $provider $*
+  }
+fi
+
+

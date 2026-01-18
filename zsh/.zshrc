@@ -85,10 +85,20 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 [[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 
-which mise > /dev/null 2>&1   && eval "$(mise activate zsh)"
-which eza > /dev/null 2>&1    && alias ls=eza
+which mise   > /dev/null 2>&1 && eval "$(mise activate zsh)"
+which eza    > /dev/null 2>&1 && alias ls=eza
 which zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh --cmd x)"
-which bun > /dev/null 2>&1    && export PATH=${HOME}/.bun/bin:$PATH
+which bun    > /dev/null 2>&1 && export PATH=${HOME}/.bun/bin:$PATH
+if which s   > /dev/null 2>&1 
+then
+  alias s="s -b ~/.local/bin/edge"
+  ss() {
+    provider=$(s -l | fzf)
+    s -b ~/.local/bin/edge -p $provider $*
+  }
+fi
+
+
 
 # bun completions
 [ -s "/home/kazto/.bun/_bun" ] && source "/home/kazto/.bun/_bun"

@@ -22,6 +22,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
+[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
+
 # Use modern completion system
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit
@@ -83,7 +85,6 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 
 which mise   > /dev/null 2>&1 && eval "$(mise activate zsh)"
 which eza    > /dev/null 2>&1 && alias ls=eza
@@ -105,4 +106,39 @@ then
   }
 fi
 
+if which llm-translator-rust > /dev/null 2>&1
+then
+    alias t=llm-translator-rust
+    alias te='llm-translator-rust -l en'
+    alias tj='llm-translator-rust -l ja'
+fi
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+if [ $(uname) = "Darwin" ]
+then
+    export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+    alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+fi
+
+which nb > /dev/null 2>&1 && alias nb-add-daily="nb add --template \"$(cat ~/.nb/home/templates/daily.md)\" -f daily/$(date +%Y-%m-%d).md"
+
+function ghwhoami() {
+  ssh -T github.com 2>&1 | sed 's/Hi //; s/\! You.*$//' | tee ~/.ghuser
+} 
+
+function ghswitch() {
+  rm -f ~/.ssh/config
+  if [ $(cat ~/.ghuser) = 'kazto' ]
+  then
+    ln -s ~/.ssh/config.work ~/.ssh/config
+  else
+    ln -s ~/.ssh/config.kazto ~/.ssh/config
+  fi
+  ghwhoami
+}
+
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+
+source ~/.env.user
 

@@ -4,7 +4,7 @@ local act = wez.action
 
 -- constants -------------------------------------------------
 local win32_system_backdrop = 'Acrylic' -- 'Acrylic' 'Mica' 'Tabbed'
-local window_background_opacity = 0.7
+local window_background_opacity = 0.9
 
 -- Toggle Backdrop Event -------------------------------------
 wez.on('toggle-backdrop', function(window, _)
@@ -18,6 +18,15 @@ wez.on('toggle-backdrop', function(window, _)
 	     overrides.window_background_opacity = window_background_opacity
 	  end
 	  window:set_config_overrides(overrides)
+end)
+
+wez.on('bell', function(window, pane)
+	  local proc = pane:get_foreground_process_info()
+	  if not process or not process.argv then
+	     return
+	  end
+	  
+	  window:toast_notification(process.argv[0], process.argv[0], nill, 4000)
 end)
 
 -- launch menu -----------------------------------------------
@@ -36,7 +45,7 @@ cnf.font = wez.font_with_fallback({
       },
       "Noto Sans",
 })
-cnf.font_size = 14.0
+cnf.font_size = 16.0
 cnf.audible_bell = 'Disabled'
 cnf.leader = { key = ";", mods = "CTRL" }
 cnf.enable_kitty_keyboard = true
@@ -54,7 +63,7 @@ cnf.colors = {
       -- '#24ACD4', -- blue
       '#44ffd4', -- blue
       '#F2AFFD', -- magenta
-      '#24C299', -- cyan
+      '#82A2BE', -- cyan
       '#E6E6E6', -- white
    },
    brights = {
@@ -64,11 +73,45 @@ cnf.colors = {
       '#E9E836', -- yellow
       '#5DC5F8', -- blue
       '#FEABF2', -- magenta
-      '#24DFC4', -- cyan
+      '#82A2BE', -- cyan
       '#FFFFFF', -- white
    }
 }
 -- keybindings -----------------------------------------------
+function copyPrevOut(window, pane)
+   -- コピーモードに入る
+   window:perform_action(act.ActivateCopyMode, pane)
+
+   -- 直前のInputゾーン（最後のコマンド）に移動
+   window:perform_action(act.CopyMode({ MoveBackwardZoneOfType = "Input" }), pane)
+
+   -- セル選択モードを開始
+   window:perform_action(act.CopyMode({ SetSelectionMode = "Cell" }), pane)
+
+   -- 次のPromptゾーンまで選択（コマンドと出力を含む）
+   window:perform_action(act.CopyMode({ MoveForwardZoneOfType = "Prompt" }), pane)
+
+   -- 1行上に移動して行末へ（現在のプロンプト行を除外）
+   window:perform_action(act.CopyMode("MoveUp"), pane)
+   window:perform_action(act.CopyMode("MoveToEndOfLineContent"), pane)
+
+   -- クリップボードにコピー
+   window:perform_action(
+      act.Multiple({
+         { CopyTo = "ClipboardAndPrimarySelection" },
+         { Multiple = { "ScrollToBottom", { CopyMode = "Close" } } },
+      }),
+      pane
+   )
+
+   -- ステータスバーに一時的なステータスを表示
+   window:set_right_status("📋 Copied!")
+   -- 3秒後にクリア
+   wezterm.time.call_after(3, function()
+      window:set_right_status("")
+   end)
+end
+
 cnf.keys = {
    { key = 'l', mods = 'LEADER', action = wez.action.ShowLauncher },
    { key = 'd', mods = 'LEADER', action = wez.action.ShowDebugOverlay },
@@ -136,6 +179,16 @@ cnf.key_tables = {
       { key = 'q', mods = 'NONE', action = act.CopyMode 'Close' },
    },
 }
+
+if wez.target_triple == "aarch64-apple-darwin" or wez.target_triple == "x86_64-apple-darwin" then
+   local mac_keys = {
+      { key = '¥', action = wez.action.SendKey({ key = "\\" }) },
+      { key = '¥', mods = 'OPT', action = wez.action.SendString( '¥' ) },
+   }
+   for i=1,#mac_keys do
+      cnf.keys[#cnf.keys + 1] = mac_keys[i]
+   end
+end
 
 -- IME -------------------------------------------------------
 cnf.use_ime = true

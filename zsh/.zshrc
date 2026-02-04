@@ -122,13 +122,26 @@ then
     alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 fi
 
-which nb > /dev/null 2>&1 && alias nb-add-daily="nb add --template \"$(cat ~/.nb/home/templates/daily.md)\" -f daily/$(date +%Y-%m-%d).md"
+function nb-add-daily {
+  local TEMPLATE_FILE=~/.nb/home/templates/daily.md
+  if [ -f $TEMPLATE_FILE ]
+  then
+    nb add --template "$(cat $TEMPLATE_FILE)" -f daily/$(date +%Y-%m-%d).md
+  else
+    nb add -f daily/$(date +%Y-%m-%d).md
+  fi
+}
 
 function ghwhoami() {
   ssh -T github.com 2>&1 | sed 's/Hi //; s/\! You.*$//' | tee ~/.ghuser
 } 
 
 function ghswitch() {
+  if ! [ -L ~/.ssh/config ]
+  then
+    gwwhoami
+    return 0
+  fi
   rm -f ~/.ssh/config
   if [ $(cat ~/.ghuser) = 'kazto' ]
   then
@@ -141,5 +154,5 @@ function ghswitch() {
 
 test -e /usr/libexec/java_home && export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 
-source ~/.env.user
+test -f ~/.env.user && source ~/.env.user
 

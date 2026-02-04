@@ -85,6 +85,7 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 
 which mise   > /dev/null 2>&1 && eval "$(mise activate zsh)"
 which eza    > /dev/null 2>&1 && alias ls=eza
@@ -138,7 +139,7 @@ function ghswitch() {
   ghwhoami
 }
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+test -e /usr/libexec/java_home && export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 
 source ~/.env.user
 

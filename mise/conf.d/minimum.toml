@@ -1,5 +1,6 @@
 [tools]
 bat = "latest"
+bitwarden = "latest"
 bun = "latest"
 delta = "latest"
 difftastic = "latest"
@@ -8,7 +9,10 @@ eza = "latest"
 fd = "latest"
 fzf = "latest"
 node = "22.9.0"
+"github:bitwarden/sdk" = { version = "latest", version_prefix = "bws-v" }
+jq = "latest"
 rg = "latest"
 ruby = "latest"
 yq = "latest"
+zls = "latest"
 zoxide = "latest"

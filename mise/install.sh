@@ -23,3 +23,4 @@ do
     install_dotfiles $target_f $dest_f
 done
 
+touch $HOME/.config/mise/config.toml

@@ -116,7 +116,7 @@ fi
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
-if [ $(uname) = "Darwin" ]
+if [[ $(uname) = "Darwin" ]]
 then
     export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
     alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
@@ -124,7 +124,7 @@ fi
 
 function nb-add-daily {
   local TEMPLATE_FILE=~/.nb/home/templates/daily.md
-  if [ -f $TEMPLATE_FILE ]
+  if [[ -f $TEMPLATE_FILE ]]
   then
     nb add --template "$(cat $TEMPLATE_FILE)" -f daily/$(date +%Y-%m-%d).md
   else
@@ -137,13 +137,13 @@ function ghwhoami() {
 } 
 
 function ghswitch() {
-  if ! [ -L ~/.ssh/config ]
+  if [[ ! -L ~/.ssh/config ]]
   then
     gwwhoami
     return 0
   fi
   rm -f ~/.ssh/config
-  if [ $(cat ~/.ghuser) = 'kazto' ]
+  if [[ $(cat ~/.ghuser) = 'kazto' ]]
   then
     ln -s ~/.ssh/config.work ~/.ssh/config
   else

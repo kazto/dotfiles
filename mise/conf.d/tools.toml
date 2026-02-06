@@ -2,6 +2,7 @@
 aws-cli = "latest"
 github-cli = "latest"
 zellij = "latest"
+"github:jj-vcs/jj" = "latest"
 "github:m3m0r7/llm-translator-rust" = "latest"
 "github:skanehira/parallels" = "latest"
 "github:steipete/gogcli" = "latest"

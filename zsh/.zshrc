@@ -120,6 +120,7 @@ if [[ $(uname) = "Darwin" ]]
 then
     export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
     alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+    alias wezterm="/Applications/WezTerm.app/Contents/MacOS/wezterm"
 fi
 
 function nb-add-daily {

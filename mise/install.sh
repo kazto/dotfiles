@@ -15,6 +15,7 @@ fi
 test -f $DEST/minimum.toml && backup_old $DEST/minimum.toml
 test -f $DEST/lang1.toml && backup_old $DEST/lang1.toml
 test -f $DEST/lang2.toml && backup_old $DEST/lang2.toml
+test -f $DEST/tools.toml && backup_old $DEST/tools.toml
 
 for f in $install_files
 do

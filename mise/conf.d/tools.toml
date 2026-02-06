@@ -1,0 +1,8 @@
+[tools]
+aws-cli = "latest"
+github-cli = "latest"
+zellij = "latest"
+"github:m3m0r7/llm-translator-rust" = "latest"
+"github:skanehira/parallels" = "latest"
+"github:steipete/gogcli" = "latest"
+"github:zquestz/s" = "0.7.5"

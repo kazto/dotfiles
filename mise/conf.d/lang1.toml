@@ -1,8 +1,8 @@
 [tools]
-aws-cli = "latest"
-github-cli = "latest"
-go = "1.24.5"
+go = "latest"
 node = "latest"
 ruby = "latest"
 rust = "latest"
 uv = "latest"
+zig = "latest"
+zls = "latest"

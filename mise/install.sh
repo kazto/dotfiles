@@ -9,7 +9,7 @@ DEST=$HOME/.config/mise/conf.d
 install_files="$*"
 if [ "x$install_files" = "x" ]
 then
-    exit 0
+    install_files=minimum
 fi
 
 test -f $DEST/minimum.toml && backup_old $DEST/minimum.toml

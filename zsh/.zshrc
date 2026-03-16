@@ -153,7 +153,11 @@ function ghswitch() {
   ghwhoami
 }
 
+# Vite+ bin (https://viteplus.dev)
+test -d "$HOME/.vite-plus" && . "$HOME/.vite-plus/env"
+
 test -e /usr/libexec/java_home && export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 
 test -f ~/.env.user && source ~/.env.user
+
 

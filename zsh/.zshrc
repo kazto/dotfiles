@@ -153,6 +153,12 @@ function ghswitch() {
   ghwhoami
 }
 
+if [ -f ~/.dotfiles/zsh/bashgui/bashguy.sh ]
+then
+  source ~/.dotfiles/zsh/bashgui/bashguy.sh
+  bindkey '^I' _bashguy_widget
+fi
+
 # Vite+ bin (https://viteplus.dev)
 test -d "$HOME/.vite-plus" && . "$HOME/.vite-plus/env"
 

@@ -22,7 +22,9 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
-[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
+[[ -d $HOME/.local/bin ]] && PATH=$HOME/.local/bin:$PATH
+[[ -d /opt/flutter ]] && PATH=/opt/flutter/bin:$PATH
+export PATH
 
 # Use modern completion system
 fpath=(~/.zsh/completion $fpath)

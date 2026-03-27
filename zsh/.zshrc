@@ -159,6 +159,12 @@ then
   bindkey '^T' _bashguy_widget
 fi
 
+if which zcpbuf 2>&1 > /dev/null
+then
+    alias cop='zcpbuf copy'
+    alias pst='zcpbuf paste'
+fi
+
 # Vite+ bin (https://viteplus.dev)
 test -d "$HOME/.vite-plus" && . "$HOME/.vite-plus/env"
 

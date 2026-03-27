@@ -7,4 +7,6 @@ zellij = "latest"
 "github:skanehira/parallels" = "latest"
 "github:steipete/gogcli" = "latest"
 "github:zquestz/s" = "0.7.5"
-"github:charmbracelet/glow" = "latest"
+"github:kazto/zcpbuf" = "latest"
+"github:atani/glowm" = "latest"
+

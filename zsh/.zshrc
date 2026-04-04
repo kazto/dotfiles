@@ -24,7 +24,11 @@ HISTFILE=~/.zsh_history
 
 [[ -d $HOME/.local/bin ]] && PATH=$HOME/.local/bin:$PATH
 [[ -d /opt/flutter ]] && PATH=/opt/flutter/bin:$PATH
+[[ -d /opt/android_sdk/cmdline-tools ]] && PATH=/opt/android_sdk/cmdline-tools/bin:$PATH
 export PATH
+
+[[ -d /opt/android_sdk ]] && export ANDROID_HOME=/opt/android_sdk
+which chromium 2>&1 > /dev/null && export CHROME_EXECUTABLE=/snap/bin/chromium
 
 # Use modern completion system
 fpath=(~/.zsh/completion $fpath)

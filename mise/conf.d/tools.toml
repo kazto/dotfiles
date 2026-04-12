@@ -9,4 +9,5 @@ zellij = "latest"
 "github:zquestz/s" = "0.7.5"
 "github:kazto/zcpbuf" = "latest"
 "github:atani/glowm" = "latest"
+"github:rtk-ai/rtk" = "latest"
 

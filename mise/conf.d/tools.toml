@@ -10,4 +10,4 @@ zellij = "latest"
 "github:kazto/zcpbuf" = "latest"
 "github:atani/glowm" = "latest"
 "github:rtk-ai/rtk" = "latest"
-
+"github:mickamy/tug" = "latest"
